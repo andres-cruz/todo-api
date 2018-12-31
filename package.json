@@ -1,0 +1,25 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "To-Do app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andres-cruz/todo-api.git"
+  },
+  "author": "Andrés Cruz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andres-cruz/todo-api/issues"
+  },
+  "homepage": "https://github.com/andres-cruz/todo-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^2.2.19",
+    "mongoose": "^4.5.9"
+  }
+}
