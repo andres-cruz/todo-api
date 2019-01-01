@@ -4,7 +4,11 @@
   "description": "To-Do app",
   "main": "app.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha server/**/*.test.js"
+  },
+  "engines": {
+    "node": "10.8.0"
   },
   "repository": {
     "type": "git",
