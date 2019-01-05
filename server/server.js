@@ -8,6 +8,7 @@ const ObjectID = require('mongodb').ObjectID;
 const mongoose = require('./db/mongoose');
 const Todo = require('./models/todo');
 const User = require('./models/user');
+const authenticate = require('./../middleware/authenticate');
 
 // settings
 const app = express();
