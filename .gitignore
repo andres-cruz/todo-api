@@ -4,6 +4,4 @@ node_modules/
 # Playground
 playground/
 
-# Configuration
-server/config/config.json
 
