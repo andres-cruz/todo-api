@@ -1,24 +1,57 @@
 const expect = require('expect');
 const request = require('supertest');
 const ObjectID = require('mongodb').ObjectID;
+const jwt = require('jsonwebtoken');
 
 const app = require('./../server');
 const Todo = require('./../models/todo');
+const User = require('./../models/user');
 
+// IDs
+const userOneId = new ObjectID();
+const userTwoId = new ObjectID();
+
+// array users
+const users = [{
+    _id: userOneId,
+    email: 'andrew@example.com',
+    password: 'userOnePass',
+    tokens: [{
+        access: 'auth',
+        token: jwt.sign({ _id: userOneId, access: 'auth' }, 'abc123').toString()
+    }]
+}, {
+    _id: userTwoId,
+    email: 'jen@example.com',
+    password: 'userTwoPass'
+}];
+
+// array to-do
 const todos = [{
     _id: new ObjectID(),
     text: 'Study JavaScript'
-    }, 
-    {
-        _id: new ObjectID(),
-        text: 'Walk the dog',
-        completed: true,
-        completedAt: 333
-    }];
+},
+{
+    _id: new ObjectID(),
+    text: 'Walk the dog',
+    completed: true,
+    completedAt: 333
+}];
 
 beforeEach((done) => {
-    Todo.remove({}).then(() => {
-        return Todo.insertMany(todos);
+    Todo.remove({})
+        .then(() => {
+            return Todo.insertMany(todos);
+        })
+        .then(() => done());
+});
+
+beforeEach((done) => {
+    User.remove({}).then(() => {
+        var userOne = new User(users[0]).save();
+        var userTwo = new User(users[1]).save();
+
+        return Promise.all([userOne, userTwo])
     }).then(() => done());
 });
 
